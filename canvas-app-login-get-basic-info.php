@@ -64,7 +64,7 @@ if (isset($accessToken)) {
   	// access token from $_SESSION['facebook_access_token']
 } else {
 	$helper = $fb->getRedirectLoginHelper();
-	$permissions = ['email', 'user_birthday']; // optional
+	$permissions = ['email']; // optional
 	$loginUrl = $helper->getLoginUrl('https://apps.facebook.com/APP_NAMESPACE/', $permissions);
 
 	echo "<script>window.top.location.href='".$loginUrl."'</script>";
