@@ -44,8 +44,13 @@ if (isset($accessToken)) {
 	}
 
 	try {
-	$response = $fb->get('/me?fields=name,email');
-	$user = $response->getGraphUser();
+	// message must come from the user-end
+	$data = ['message' => 'testing...'];
+	// updating status on user timeline
+	$request = $fb->post('/me/feed', $data);
+
+	$response = $request->getGraphUser();
+
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
 	// When Graph returns an error
 	echo 'Graph returned an error: ' . $e->getMessage();
@@ -58,8 +63,7 @@ if (isset($accessToken)) {
 	exit;
 	}
 
-	$data = ['message' => 'hi how are you?'];
-	$response1 = $fb->post('/me/feed', $data);
+	echo $response['id'];
 
   	// Now you can redirect to another page and use the
   	// access token from $_SESSION['facebook_access_token']
