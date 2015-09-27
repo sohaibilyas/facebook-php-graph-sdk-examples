@@ -1,2 +1,2 @@
-# facebook-php-sdk-v5
-All the examples are related to Facebook PHP SDK v5 series from https://www.youtube.com/c/sohaibilyas.
+# Facebook PHP SDK v5 Examples
+For video tutorials click this link https://www.youtube.com/playlist?list=PLmpuiTmSb3xCLwwkpXeuJxwKyljf7e3Tx for the playlist related to Facebook PHP SDK v5 by Sohaib Ilyas (Roomi).
