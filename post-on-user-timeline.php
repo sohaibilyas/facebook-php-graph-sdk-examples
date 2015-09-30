@@ -58,10 +58,10 @@ if (isset($accessToken)) {
 	
 	// posting on user timeline using publish_actins permission
 	try {
-	// message must come from the user-end
-	$data = ['message' => 'testing...'];
-	$request = $fb->post('/me/feed', $data);
-	$response = $request->getGraphEdge()->asArray;
+		// message must come from the user-end
+		$data = ['message' => 'testing...'];
+		$request = $fb->post('/me/feed', $data);
+		$response = $request->getGraphEdge()->asArray;
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
 		// When Graph returns an error
 		echo 'Graph returned an error: ' . $e->getMessage();
