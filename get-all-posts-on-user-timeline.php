@@ -10,7 +10,7 @@ $fb = new Facebook\Facebook([
 
 $helper = $fb->getCanvasHelper();
 
-$permissions = ['user_posts'];
+$permissions = ['user_posts']; // optionnal
 
 try {
 	if (isset($_SESSION['facebook_access_token'])) {
@@ -30,17 +30,18 @@ try {
 
 if (isset($accessToken)) {
 
-	if(isset($_SESSION['facebook_access_token'])) {
+	if (isset($_SESSION['facebook_access_token'])) {
 		$fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
 	} else {
-	  	// Logged in!
-	  	$_SESSION['facebook_access_token'] = (string) $accessToken;
+		$_SESSION['facebook_access_token'] = (string) $accessToken;
 
 	  	// OAuth 2.0 client handler
 		$oAuth2Client = $fb->getOAuth2Client();
 
 		// Exchanges a short-lived access token for a long-lived one
 		$longLivedAccessToken = $oAuth2Client->getLongLivedAccessToken($_SESSION['facebook_access_token']);
+
+		$_SESSION['facebook_access_token'] = (string) $longLivedAccessToken;
 
 		$fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
 	}
