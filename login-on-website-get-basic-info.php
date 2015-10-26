@@ -48,6 +48,11 @@ if (isset($accessToken)) {
 		$fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
 	}
 
+	// redirect the user back to the same page if it has "code" GET variable
+	if (isset($_GET['code'])) {
+		header('Location: ./');
+	}
+
 	// getting basic info about user
 	try {
 		$profile_request = $fb->get('/me?fields=name,first_name,last_name,email');
