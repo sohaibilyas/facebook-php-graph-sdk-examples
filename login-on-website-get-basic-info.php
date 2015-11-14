@@ -60,6 +60,9 @@ if (isset($accessToken)) {
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
 		// When Graph returns an error
 		echo 'Graph returned an error: ' . $e->getMessage();
+		session_destroy();
+		// redirecting user back to app login page
+		header("Location: ./");
 		exit;
 	} catch(Facebook\Exceptions\FacebookSDKException $e) {
 		// When validation fails or other local issues
