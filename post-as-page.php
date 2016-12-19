@@ -5,13 +5,13 @@ require_once __DIR__ . '/src/Facebook/autoload.php';
 $fb = new Facebook\Facebook([
   'app_id' => 'APP_ID',
   'app_secret' => 'APP_SECRET',
-  'default_graph_version' => 'v2.5',
+  'default_graph_version' => 'v2.8',
   ]);
 
 $helper = $fb->getRedirectLoginHelper();
 
 $permissions = ['manage_pages', 'publish_pages']; // optional
-	
+
 try {
 	if (isset($_SESSION['facebook_access_token'])) {
 		$accessToken = $_SESSION['facebook_access_token'];
@@ -69,7 +69,7 @@ if (isset($accessToken)) {
 		echo 'Facebook SDK returned an error: ' . $e->getMessage();
 		exit;
 	}
-	
+
 	// post on behalf of page
 	$pages = $fb->get('/me/accounts');
 	$pages = $pages->getGraphEdge()->asArray();
