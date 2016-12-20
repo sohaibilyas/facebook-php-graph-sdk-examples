@@ -89,7 +89,7 @@ if (isset($accessToken)) {
 		foreach ($allFriends as $key) {
 			echo $key['name'] . "<br>";
 		}
-		echo count($allfriends);
+		echo count($allFriends);
 	} else {
 		$allFriends = $friends->asArray();
 		$totalFriends = count($allFriends);
