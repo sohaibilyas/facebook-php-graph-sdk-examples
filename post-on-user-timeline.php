@@ -44,7 +44,7 @@ if (isset($accessToken)) {
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
 		// When Graph returns an error
 		if ($e->getCode() == 190) {
-			unset($_SESSION['facebook_access_token']);
+		 	unset($_SESSION['facebook_access_token']);
 			$helper = $fb->getRedirectLoginHelper();
 			$loginUrl = $helper->getLoginUrl('https://apps.facebook.com/APP_NAMESPACE/', $permissions);
 			echo "<script>window.top.location.href='".$loginUrl."'</script>";
@@ -61,7 +61,7 @@ if (isset($accessToken)) {
 		// message must come from the user-end
 		$data = ['message' => 'testing...'];
 		$request = $fb->post('/me/feed', $data);
-		$response = $request->getGraphEdge()->asArray;
+		$response = $request->getGraphNode()->asArray;
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
 		// When Graph returns an error
 		echo 'Graph returned an error: ' . $e->getMessage();
