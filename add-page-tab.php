@@ -1,12 +1,12 @@
 <?php
 session_start();
-require_once __DIR__ . '/src/Facebook/autoload.php';
- 
+require_once __DIR__ . '/src/Facebook/autoload.php'; // download official fb sdk for php @ https://github.com/facebook/php-graph-sdk
+
 $fb = new Facebook\Facebook([
   'app_id' => 'APP_ID',
   'app_secret' => 'APP_SECRET',
-  'default_graph_version' => 'v2.5'
-  ]);
+  'default_graph_version' => 'v2.11'
+]);
 
 $helper = $fb->getRedirectLoginHelper();
 
@@ -14,7 +14,7 @@ $helper = $fb->getRedirectLoginHelper();
 define('APP_URL', 'http://sohaibilyas.com/APP_DIR/');
 
 $permissions = ['manage_pages']; // optional
-	
+
 try {
 	if (isset($_SESSION['facebook_access_token'])) {
 		$accessToken = $_SESSION['facebook_access_token'];
@@ -92,7 +92,7 @@ if (isset($accessToken)) {
 	if (isset($_POST['submit'])) {
 		$page = $fb->get('/' . $_POST['page'] . '?fields=access_token, name, id');
 		$page = $page->getGraphNode()->asArray();
-		
+
 		$addTab = $fb->post('/' . $page['id'] . '/tabs', array('app_id' => 'APP_ID'), $page['access_token']);
 		$addTab = $addTab->getGraphNode()->asArray();
 		print_r($addTab);
