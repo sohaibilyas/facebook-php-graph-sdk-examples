@@ -1,17 +1,17 @@
 <?php
 session_start();
-require_once __DIR__ . '/src/Facebook/autoload.php';
+require_once __DIR__ . '/src/Facebook/autoload.php'; // download official fb sdk for php @ https://github.com/facebook/php-graph-sdk
 
 $fb = new Facebook\Facebook([
   'app_id' => 'APP_ID',
   'app_secret' => 'APP_SECRET',
-  'default_graph_version' => 'v2.5',
+  'default_graph_version' => 'v2.11',
   ]);
 
 $helper = $fb->getRedirectLoginHelper();
 
 $permissions = []; // optional
-	
+
 try {
 	if (isset($_SESSION['facebook_access_token'])) {
 		$accessToken = $_SESSION['facebook_access_token'];
@@ -69,7 +69,7 @@ if (isset($accessToken)) {
 		echo 'Facebook SDK returned an error: ' . $e->getMessage();
 		exit;
 	}
-	
+
 	// get basic page info
 	$page = $fb->get('/funnydemons?fields=username,picture.width(500),cover,');
 	$page = $page->getGraphNode()->asArray();

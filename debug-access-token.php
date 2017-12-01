@@ -1,17 +1,17 @@
 <?php
 session_start();
-require_once __DIR__ . '/src/Facebook/autoload.php';
+require_once __DIR__ . '/src/Facebook/autoload.php'; // download official fb sdk for php @ https://github.com/facebook/php-graph-sdk
 
 $fb = new Facebook\Facebook([
   'app_id' => 'APP_ID',
   'app_secret' => 'APP_SECRET',
-  'default_graph_version' => 'v2.5',
+  'default_graph_version' => 'v2.11',
   ]);
 
 $helper = $fb->getRedirectLoginHelper();
 
 $permissions = ['email']; // optional
-	
+
 try {
 	if (isset($_SESSION['localhost_app_token'])) {
 		$accessToken = $_SESSION['localhost_app_token'];
@@ -69,11 +69,11 @@ if (isset($accessToken)) {
 		echo 'Facebook SDK returned an error: ' . $e->getMessage();
 		exit;
 	}
-	
+
 	// debugging access token
 	$debugToken = $fb->get('/debug_token?input_token='. $_SESSION['localhost_app_token']);
 	$debugToken = $debugToken->getGraphNode()->asArray();
-	
+
 	// printing out debugToken response array on screen
 	echo "<pre>";
 	print_r($debugToken);

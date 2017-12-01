@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once __DIR__ . '/src/Facebook/autoload.php';
+require_once __DIR__ . '/src/Facebook/autoload.php'; // download official fb sdk for php @ https://github.com/facebook/php-graph-sdk
 
 $fb = new Facebook\Facebook([
   'app_id' => 'APP_ID',
   'app_secret' => 'APP_SECRET',
-  'default_graph_version' => 'v2.4',
+  'default_graph_version' => 'v2.11',
 ]);
 
 $helper = $fb->getCanvasHelper();
@@ -82,9 +82,9 @@ if (isset($accessToken)) {
 	if($fb->next($posts_response)) {
 		$response_array = $posts_response->asArray();
 		$total_posts = array_merge($total_posts, $response_array);
-		while ($posts_response = $fb->next($posts_response)) {	
+		while ($posts_response = $fb->next($posts_response)) {
 			$response_array = $posts_response->asArray();
-			$total_posts = array_merge($total_posts, $response_array);	
+			$total_posts = array_merge($total_posts, $response_array);
 		}
 		print_r($total_posts);
 	} else {
