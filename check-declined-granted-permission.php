@@ -65,7 +65,7 @@ if (isset($accessToken)) {
 	foreach ($permissions as $key) {
 		if ($key['status'] == 'declined') {
 			$declined[] = $key['permission'];
-			$loginUrl = $helper->getLoginUrl('http://sohaibilyas.com/APP_DIR/', $declined);
+			$loginUrl = $helper->getReRequestUrl('http://sohaibilyas.com/APP_DIR/', $declined);
 			echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 		}
 	}
