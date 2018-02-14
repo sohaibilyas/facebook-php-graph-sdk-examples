@@ -5,7 +5,7 @@ require_once __DIR__ . '/src/Facebook/autoload.php'; // download official fb sdk
 $fb = new Facebook\Facebook([
   'app_id' => 'APP_ID',
   'app_secret' => 'APP_SECRET',
-  'default_graph_version' => 'v2.11'
+  'default_graph_version' => 'v2.12'
   ]);
 
 $helper = $fb->getRedirectLoginHelper();
